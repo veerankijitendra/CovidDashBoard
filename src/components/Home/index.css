@@ -1,0 +1,58 @@
+.home-container {
+  width: 100%;
+  min-width: 770px;
+  max-width: 1440px;
+  background: #161625;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home-loading-container {
+  min-height: 80vh;
+
+  background: #161625;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-responsive-container {
+  width: 89.58333333333333%;
+  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-and-icon-container {
+  background: #2f2f43;
+  border-radius: 8px;
+  width: 57.22222222222222%;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+}
+
+.search-element {
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  color: #94a3b8;
+
+  flex-grow: 1;
+
+  font-weight: 400;
+  font-size: 16px;
+  font-family: 'Roboto';
+}
+
+.search-icon {
+  /* color: #ffff; */
+  color: #94a3b8;
+  margin-right: 8px;
+  height: 24px;
+  width: 24px;
+}
