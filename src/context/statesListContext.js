@@ -1,5 +1,8 @@
 import React from 'react'
 
-const statesListContext = React.createContext({statesList: []})
+const StatesListContext = React.createContext({
+  statesList: [],
+  setAscending: () => {},
+})
 
-export default statesListContext
+export default StatesListContext

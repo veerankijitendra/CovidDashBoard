@@ -27,7 +27,9 @@
 .search-and-icon-container {
   background: #2f2f43;
   border-radius: 8px;
-  width: 57.22222222222222%;
+  min-width: 312px;
+  width: 57.22222222%;
+  max-width: 824px;
   height: 72px;
 
   display: flex;
@@ -55,4 +57,90 @@
   margin-right: 8px;
   height: 24px;
   width: 24px;
+}
+
+.search-lists-con {
+  min-width: 312px;
+  width: 57.22222222%;
+  max-width: 824px;
+
+  min-height: 518px;
+  margin-bottom: 4rem;
+}
+.search-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 64px;
+  width: 100%;
+  padding-left: 4.444444444%;
+
+  padding-right: 1.111111111%;
+}
+
+.search-list:hover {
+  background: #1f1f30;
+  /* Light / blue-gray / 400 */
+
+  border: 1px solid #94a3b8;
+}
+
+.search-state-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Light / blue-gray / 500 */
+
+  color: #64748b;
+}
+
+.search-state-code-con {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 6px;
+
+  min-width: 63px;
+
+  width: 5.277777778%;
+
+  max-width: 76px;
+  height: 32px;
+
+  background: rgba(28, 212, 212, 0.16);
+  border-radius: 4px;
+}
+
+.search-state-code {
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+
+  color: #facc15;
+  margin-right: 19.5px;
+}
+
+@media all and (min-width: 768px) {
+  .search-state-code {
+    font-size: 16px;
+  }
+}
+
+.BiChevronRightSquare {
+  background: #facc15;
+
+  line-height: 24px;
+}
+
+ul {
+  padding: 0;
+}
+li {
+  list-style-type: none;
 }

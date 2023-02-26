@@ -1,62 +1,57 @@
-import {Component} from 'react'
 import {FcGenericSortingAsc, FcGenericSortingDesc} from 'react-icons/fc'
 
 import {Link} from 'react-router-dom'
 
+import {useContext} from 'react'
+
+import StatesListContext from '../../context/statesListContext'
+
 import './index.css'
 
-class HomeStateWiseContainer extends Component {
-  state = {isInAscendingOrder: true}
+const HomeStateWiseContainer = props => {
+  const value = useContext(StatesListContext)
+  const {setAscending, isAscending} = value
 
-  stateListFunctionForAscendigAndDescendingOrder = (statesList, data, list) => {
-    const renderedList = list.map(stateCode => {
-      //   const stateNameArray = statesList.filter(
-      //     each => each.state_code === stateCode,
-      //   )
-      const stateName = ''
-      //   console.log(stateNameArray[0].state_name)
-      //   console.log(property, stateName)
-      //   console.log(data[property])
-      const {total, meta} = data[stateCode]
-      //   console.log(total, meta)
-      const {population} = meta
-      const {confirmed, deceased, recovered} = total
-      const object = {stateName, confirmed, deceased, recovered, population}
-      return object
-    })
-    return renderedList
+  let array
+
+  const sorting = arr => {
+    if (!isAscending) {
+      array = []
+      for (let x = arr.length - 1; x >= 0; x -= 1) {
+        array.push(arr[x])
+      }
+      return array
+    }
+    return arr
   }
 
-  renderStateComponent = () => {
-    const {isInAscendingOrder} = this.state
-    const {statesList, data} = this.props
-    console.log(statesList.length, Object.keys(data).length)
-    const list = isInAscendingOrder
-      ? Object.keys(data)
-      : Object.keys(data).reverse()
-    const renderedList = this.stateListFunctionForAscendigAndDescendingOrder(
-      statesList,
-      data,
-      list,
-    )
-    console.log(renderedList)
+  const renderStateComponent = () => {
+    const {data} = props
+    // console.log(data)
+    const list = sorting(data)
+    console.log('list', list)
 
-    return statesList.map(state => {
-      const property = state.state_code
-      const stateName = state.state_name
-      //   console.log(property, stateName)
-      //   console.log(data[property])
-      const {total, meta} = data[property]
-      //   console.log(total, meta)
-      const {population} = meta
-      const {confirmed, deceased, recovered} = total
-      //   console.log(population, confirmed, deceased, recovered)
+    return list.map(each => {
+      //   const property = each.state_code
+      //   const stateName = each.state_name
+      //   //   console.log(property, stateName)
+      //   //   console.log(data[property])
+      //   const {total, meta} = data[property]
+      //   //   console.log(total, meta)
+      //   const {population} = meta
+      //   const {confirmed, deceased, recovered} = total
+      //   //   console.log(population, confirmed, deceased, recovered)
+      const {stateCode, name, confirmed, deceased, recovered, population} = each
+
+      if (name === null) {
+        return null
+      }
 
       return (
-        <li key={property} className="state-wise-heading-container border-none">
-          <Link to="/" className="link">
+        <Link to={`/state/${stateCode}`} className="link" key={stateCode}>
+          <li className="state-wise-heading-container border-none">
             <div className="state-name-con">
-              <p>{stateName}</p>
+              <p>{name}</p>
             </div>
             <div className="state-confirmed-cases red-color">
               <p>{confirmed}</p>
@@ -73,68 +68,66 @@ class HomeStateWiseContainer extends Component {
             <div className="state-confirmed-cases grey-color">
               <p>{population}</p>
             </div>
-          </Link>
-        </li>
+          </li>
+        </Link>
       )
     })
   }
 
-  ascendingOfStateList = () => {
-    this.setState({isInAscendingOrder: true})
+  const ascendingOfStateList = () => {
+    setAscending(true)
   }
 
-  descendingStateList = () => {
-    this.setState({isInAscendingOrder: false})
+  const descendingStateList = () => {
+    setAscending(false)
   }
 
-  render() {
-    return (
-      <div data-testId="stateWiseCovidDataTable">
-        <ul
-          className="states-wise-container"
-          data-testId="searchResultsUnorderedList"
-        >
-          <li className="state-wise-heading-container">
-            <div className="state-heading-ascending-descending-order-container">
-              <p className="state-heading">States/UT</p>
-              <button
-                type="button"
-                className="state-icon-container"
-                onClick={this.ascendingOfStateList}
-              >
-                <FcGenericSortingAsc className="state-icon" />
-              </button>
+  return (
+    <div>
+      {/* testId="stateWiseCovidDataTable" */}
+      <ul className="states-wise-container">
+        <li className="state-wise-heading-container">
+          <div className="state-heading-ascending-descending-order-container">
+            <p className="state-heading">States/UT</p>
+            <button
+              type="button"
+              className="state-icon-container"
+              onClick={ascendingOfStateList}
+            >
+              {/* testId="ascendingSort" */}
+              <FcGenericSortingAsc className="state-icon" />
+            </button>
 
-              <button
-                type="button"
-                className="state-icon-container"
-                onClick={this.descendingStateList}
-              >
-                <FcGenericSortingDesc className="state-icon" />
-              </button>
-            </div>
+            <button
+              type="button"
+              className="state-icon-container"
+              onClick={descendingStateList}
+            >
+              {/* testId="descendingSort" */}
+              <FcGenericSortingDesc className="state-icon" />
+            </button>
+          </div>
 
-            <div className="state-heading-remaining-con">
-              <p className="state-heading">Confirmed</p>
-            </div>
-            <div className="state-heading-remaining-con">
-              <p className="state-heading">Active</p>
-            </div>
-            <div className="state-heading-remaining-con">
-              <p className="state-heading">Recovered</p>
-            </div>
-            <div className="state-heading-remaining-con">
-              <p className="state-heading">Deceased</p>
-            </div>
-            <div className="state-heading-remaining-con">
-              <p className="state-heading">Population</p>
-            </div>
-          </li>
-          {this.renderStateComponent()}
-        </ul>
-      </div>
-    )
-  }
+          <div className="state-heading-remaining-con">
+            <p className="state-heading">Confirmed</p>
+          </div>
+          <div className="state-heading-remaining-con">
+            <p className="state-heading">Active</p>
+          </div>
+          <div className="state-heading-remaining-con">
+            <p className="state-heading">Recovered</p>
+          </div>
+          <div className="state-heading-remaining-con">
+            <p className="state-heading">Deceased</p>
+          </div>
+          <div className="state-heading-remaining-con">
+            <p className="state-heading">Population</p>
+          </div>
+        </li>
+        {renderStateComponent()}
+      </ul>
+    </div>
+  )
 }
 
 export default HomeStateWiseContainer

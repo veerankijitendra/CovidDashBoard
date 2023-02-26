@@ -1,8 +1,13 @@
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
-import statesListContext from './context/statesListContext'
+import {useState} from 'react'
+
+import StatesListContext from './context/statesListContext'
 
 import Home from './components/Home'
+import About from './components/About'
+import StateSpecific from './components/StateSpecific'
+import NotFound from './components/NotFound'
 import './App.css'
 
 const statesList = [
@@ -152,14 +157,19 @@ const statesList = [
   },
 ]
 
-console.log(statesList.length)
+const App = () => {
+  const [isAscending, setAscending] = useState(true)
 
-const App = () => (
-  <statesListContext.Provider value={statesList}>
-    <Switch>
-      <Route exact path="/" statesList={statesList} component={Home} />
-    </Switch>
-  </statesListContext.Provider>
-)
-
+  return (
+    <StatesListContext.Provider value={{statesList, isAscending, setAscending}}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/state/:stateCode" component={StateSpecific} />
+        <Route exact path="/bad-path" component={NotFound} />
+        <Redirect to="/bad-path" />
+      </Switch>
+    </StatesListContext.Provider>
+  )
+}
 export default App

@@ -1,0 +1,128 @@
+.specific-state-bg {
+  max-width: 1440px;
+  min-width: 360px;
+  min-height: 100vh;
+  background: #161625;
+}
+
+.ss-responsive-con {
+  padding: 24px 24px 64px 24px;
+}
+
+@media all and (min-width: 768px) {
+  .ss-responsive-con {
+    padding: 64px 144px 160px 150px;
+  }
+}
+
+.ss-state-name-tested-last-up-date-con {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ss-state-name-con {
+  padding: 5.27059px 10.5412px;
+  width: 156px;
+  height: 32px;
+  background: rgba(2, 132, 199, 0.16);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media all and (min-width: 768px) {
+  .ss-state-name-con {
+    padding: 10.5412px 21.0824px;
+    width: 312px;
+    height: 64px;
+    background: rgba(2, 132, 199, 0.16);
+    border-radius: 32px;
+  }
+}
+
+.ss-state-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Light / light-blue / 500 */
+
+  color: #0ea5e9;
+}
+
+@media all and (min-width: 768px) {
+  .ss-state-name {
+    font-size: 32px;
+    line-height: 48px;
+  }
+}
+
+.ss-tested-para-count-con {
+  text-align: right;
+}
+
+.ss-tested-para {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  /* Light / blue-gray / 400 */
+  color: #94a3b8;
+}
+
+@media all and (min-width: 768px) {
+  .ss-tested-para {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.ss-tested-count {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  /* Light / blue-gray / 400 */
+
+  color: #94a3b8;
+}
+
+@media all and (min-width: 768px) {
+  .ss-tested-count {
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
+
+.ss-last-update-date {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  /* Light / blue-gray / 300 */
+
+  color: #cbd5e1;
+}
+
+@media all and (min-width: 768px) {
+  .ss-last-update-date {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media all and (min-width: 768px) {
+}

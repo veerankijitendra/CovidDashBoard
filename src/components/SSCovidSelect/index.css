@@ -1,0 +1,118 @@
+.active {
+  color: #007bff;
+}
+
+.confirmed {
+  color: #ff073a;
+}
+
+.deceased {
+  color: #6c757d;
+}
+
+.recovered {
+  color: #28a745;
+}
+
+.SSCV-bg {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  justify-content: space-between;
+}
+
+@media all and (min-width: 768px) {
+  .SSCV-bg {
+    margin-top: 64px;
+  }
+}
+
+.SSCV-list-con {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media all and (min-width: 768px) {
+  .SSCV-list-con {
+    width: 25%;
+  }
+}
+
+.SSCV-button {
+  min-width: 148px;
+  min-height: 148px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+@media all and (min-width: 768px) {
+  .SSCV-button {
+    width: 264px;
+    height: 232px;
+  }
+}
+
+.SSCV-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 1rem;
+}
+@media all and (min-width: 768px) {
+  .SSCV-text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.SSCV-image {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 1rem;
+}
+
+@media all and (min-width: 768px) {
+  .SSCV-image {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.SSCV-count {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@media all and (min-width: 768px) {
+  .SSCV-count {
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
+.bg-confirmed {
+  background: #331427;
+}
+
+.bg-active {
+  background: #132240;
+}
+
+.bg-recovered {
+  background: #182829;
+}
+
+.bg-deceased {
+  background: #212230;
+}

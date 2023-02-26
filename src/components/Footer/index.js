@@ -13,9 +13,9 @@ const Footer = () => (
       we stand with everyone fighting on the front lines
     </p>
     <div className="footer-icon-con">
-      <VscGithubAlt className="footer-icon one" />
-      <FiInstagram className="footer-icon one" />
-      <FaTwitter className="footer-icon one" />
+      <VscGithubAlt size={45} className="footer-icon " />
+      <FiInstagram size={45} className="footer-icon " />
+      <FaTwitter size={45} className="footer-icon " />
     </div>
   </div>
 )
