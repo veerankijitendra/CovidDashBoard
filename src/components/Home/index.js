@@ -108,7 +108,7 @@ class Home extends Component {
           menuOpened={menuOpened}
           toggleMenOpened={this.toggleMenOpened}
         />
-        <div className="home-loading-container">
+        <div className="home-loading-container" testId="homeRouteLoader">
           {/* testId="homeRouteLoader" */}
           <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
         </div>
@@ -141,7 +141,7 @@ class Home extends Component {
     )
 
     return (
-      <ul className="search-lists-con">
+      <ul className="search-lists-con" testId="renderStateListWhileSearch">
         {/* testId="renderStateListWhileSearch" */}
         {filteredList.map(each => (
           <Link to={`/state/${each.state_code}`}>

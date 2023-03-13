@@ -6,7 +6,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import SSCovidSelect from '../SSCovidSelect'
 import SSTopDistrict from '../SSTopDistrict'
-import SSBarGraph from '../SSBarGraph'
+import SSGraph from '../SSGraph'
 
 import StatesListContext from '../../context/statesListContext'
 import './index.css'
@@ -147,7 +147,6 @@ class StateSpecific extends Component {
     const lastUpdate = this.getLastUpdatedDate(meta.last_updated)
 
     const covidSelectList = this.createCovidSelectList(total)
-    console.log(covidDetails)
 
     return (
       <>
@@ -155,7 +154,7 @@ class StateSpecific extends Component {
           <div className="ss-state-name-tested-last-up-date-con">
             <div>
               <div className="ss-state-name-con">
-                <p className="ss-state-name">{stateName}</p>
+                <h1 className="ss-state-name">{stateName}</h1>
               </div>
               <p className="ss-last-update-date">{lastUpdate}</p>
             </div>
@@ -175,7 +174,7 @@ class StateSpecific extends Component {
           activeKey={activeKey}
           districts={{...covidDetails.districts}}
         />
-        <SSBarGraph activeKey={activeKey} />
+        <SSGraph activeKey={activeKey} />
       </>
     )
   }
@@ -205,14 +204,16 @@ class StateSpecific extends Component {
         const stateName = this.getStateName(statesList, stateCode)
 
         return (
-          <div className="specific-state-bg">
+          <>
             <Header />
-            <div className="ss-responsive-con">
-              {this.specificStateDetails(stateName, stateCode)}
-            </div>
+            <div className="specific-state-bg">
+              <div className="ss-responsive-con">
+                {this.specificStateDetails(stateName, stateCode)}
+              </div>
 
-            <Footer />
-          </div>
+              <Footer />
+            </div>
+          </>
         )
       }}
     </StatesListContext.Consumer>
@@ -226,8 +227,8 @@ class StateSpecific extends Component {
           menuOpened={menuOpened}
           toggleMenOpened={this.toggleMenOpened}
         />
-        <div className="home-loading-container">
-          {/* testId="homeRouteLoader" */}
+        <div className="home-loading-container" testId="stateDetailsLoader">
+          {/* testId="stateDetailsLoader" */}
           <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
         </div>
       </ul>

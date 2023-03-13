@@ -1,11 +1,12 @@
 .specific-state-bg {
   max-width: 1440px;
-  min-width: 360px;
+  min-width: 770px;
   min-height: 100vh;
   background: #161625;
 }
 
 .ss-responsive-con {
+  width: 100%;
   padding: 24px 24px 64px 24px;
 }
 

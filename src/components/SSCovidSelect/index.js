@@ -1,16 +1,30 @@
 import './index.css'
 
+const testIds = {
+  confirmed: 'stateSpecificConfirmedCasesContainer',
+  recovered: 'stateSpecificRecoveredCasesContainer',
+  deceased: 'stateSpecificDeceasedCasesContainer',
+  active: 'stateSpecificActiveCasesContainer',
+}
+
+const altNames = {
+  confirmed: 'state specific confirmed cases pic',
+  recovered: 'state specific recovered cases pic',
+  deceased: 'state specific deceased cases pic',
+  active: 'state specific active cases pic',
+}
+
 const SSCovidSelect = props => {
   const {list, activeKey, setActiveKey} = props
 
   return (
-    <ul className="SSCV-bg">
+    <div className="SSCV-bg">
       {list.map(each => {
         const {text, icon, count, id} = each
         const bg = activeKey === id ? `SSCV-button bg-${id}` : `SSCV-button`
 
         return (
-          <li className="SSCV-list-con" key={id}>
+          <div className="SSCV-list-con" key={id} dataId={testIds[activeKey]}>
             <button
               type="button"
               onClick={() => {
@@ -19,13 +33,17 @@ const SSCovidSelect = props => {
               className={bg}
             >
               <p className={`SSCV-text ${id}`}>{text}</p>
-              <img alt="covid select" src={icon} className="SSCV-image" />
+              <img
+                alt={altNames[activeKey]}
+                src={icon}
+                className="SSCV-image"
+              />
               <p className={`SSCV-count ${id}`}>{count}</p>
             </button>
-          </li>
+          </div>
         )
       })}
-    </ul>
+    </div>
   )
 }
 

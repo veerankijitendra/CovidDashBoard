@@ -47,7 +47,7 @@ const SSTopDistrict = props => {
   const districtWiseCases = casesList()
 
   return (
-    <ul className="sstd-bg-con">
+    <ul className="sstd-bg-con" testId="topDistrictsUnorderedList">
       {districtWiseCases.map(each => (
         <li className="sstd-con" key={each.district}>
           <p className="sstd-count">{each.count}</p>

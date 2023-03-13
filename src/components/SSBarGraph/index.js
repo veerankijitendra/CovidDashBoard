@@ -1,82 +1,47 @@
-import {Component} from 'react'
+import {BarChart, Bar, XAxis, YAxis, Tooltip, Legend} from 'recharts'
 
-import {withRouter} from 'react-router-dom'
-
-import Loader from 'react-loader-spinner'
-
-import './index.css'
-
-const apiStatusConstants = {
-  loading: 'LOADING',
-  updated: 'UPDATED',
+const color = {
+  confirmed: '#9A0E31',
+  active: '#0A4FA0',
+  deceased: '#474C57',
+  recovered: '#216837',
 }
 
-class SSBarGraph extends Component {
-  state = {apiStatus: apiStatusConstants.loading, data: []}
+const SSBarGraph = props => {
+  const {data, activeKey} = props
 
-  componentDidMount() {
-    this.getStateWiseData()
-  }
-
-  getStateWiseData = async () => {
-    const {match} = this.props
-    const {params} = match
-    const {stateCode} = params
-    const url = `https://apis.ccbp.in/covid19-timelines-data/${stateCode}`
-    const options = {
-      method: 'GET',
+  const dataFormater = number => {
+    if (number >= 1000) {
+      return `${number / 1000}k`
     }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    const {dates} = data
-
-    const list = []
-
-    Object.keys(dates).forEach(date => {
-      const {total} = date
-      const {confirmed, deceased, recovered, tested} = total
-
-      const object = {
-        date,
-        confirmed,
-        deceased,
-        recovered,
-        tested,
-      }
-
-      list.push(object)
-    })
-
-    console.log(list)
-
-    this.setState({
-      data: [...list],
-      apiStatus: apiStatusConstants.updated,
-    })
+    return number
   }
 
-  renderUpdatedPhase = () => <h1>Bar Graph</h1>
+  const activeCardList = data[activeKey]
+  const lastTenDaysData = activeCardList.slice(activeCardList.length - 10)
 
-  renderLoadingPhase = () => (
-    <ul>
-      <div className="ssbg-container">
-        {/* testId="homeRouteLoader" */}
-        <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
-      </div>
-    </ul>
+  lastTenDaysData.sort((a, b) => b.count - a.count)
+
+  return (
+    <BarChart width={600} height={400} data={lastTenDaysData}>
+      <XAxis dataKey="date" />
+      <YAxis hide dataKey="count" tickFormatter={dataFormater} />
+      <Tooltip />
+      <Legend />
+      <Bar
+        barSize={30}
+        dataKey="count"
+        fill={color[activeKey]}
+        className="bar"
+        label={{
+          position: 'top',
+          fill: color[activeKey],
+          fontSize: 12,
+          offset: 12,
+        }}
+      />
+    </BarChart>
   )
-
-  render() {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
-      case apiStatusConstants.loading:
-        return this.renderLoadingPhase()
-      case apiStatusConstants.updated:
-        return this.renderUpdatedPhase()
-      default:
-        return null
-    }
-  }
 }
 
-export default withRouter(SSBarGraph)
+export default SSBarGraph
