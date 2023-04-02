@@ -165,7 +165,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/state/:stateCode" component={StateSpecific} />
+        <Route path="/state/:stateCode" component={StateSpecific} />
         <Route exact path="/bad-path" component={NotFound} />
         <Redirect to="/bad-path" />
       </Switch>

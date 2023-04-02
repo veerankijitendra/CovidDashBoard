@@ -9,20 +9,16 @@ class Header extends Component {
   renderMenu = () => (
     <div className="header-menu-container">
       <div className="header-menu-icon-link-container">
-        <Link to="/" className="nav-link-item mobile mr">
-          <li className=" light-black">
-            <button type="button" className="nav-button">
-              Home
-            </button>
-          </li>
-        </Link>
-        <Link to="/about" className="nav-link-item mobile mr">
-          <li className="nav-link-item light-black">
-            <button type="button" className="nav-button">
-              About
-            </button>
-          </li>
-        </Link>
+        <li className=" light-black">
+          <Link to="/" className="nav-link-item mobile mr nav-button">
+            Home
+          </Link>
+        </li>
+        <li className="nav-link-item light-black">
+          <Link to="/about" className="nav-link-item mobile mr nav-button">
+            About
+          </Link>
+        </li>
       </div>
       <button
         type="button"
@@ -63,20 +59,18 @@ class Header extends Component {
                   alt="menu"
                 />
               </button>
-              <Link to="/" className="nav-link-item desktop">
-                <li className=" light-black">
-                  <button type="button" className="nav-button">
-                    Home
-                  </button>
-                </li>
-              </Link>
-              <Link to="/about" className="desktop">
-                <li className="nav-link-item light-black ">
-                  <button type="button" className="nav-button">
-                    About
-                  </button>
-                </li>
-              </Link>
+
+              <li className=" light-black">
+                <Link to="/" className="nav-link-item desktop nav-button">
+                  Home
+                </Link>
+              </li>
+
+              <li className="nav-link-item light-black ">
+                <Link to="/about" className="desktop nav-button">
+                  About
+                </Link>
+              </li>
             </ul>
           </ul>
           {menuOpened ? this.renderMenu() : null}

@@ -18,13 +18,14 @@ const SSCovidSelect = props => {
   const {list, activeKey, setActiveKey} = props
 
   return (
-    <div className="SSCV-bg">
+    <div className="SSCV-bg" testId={testIds.activeKey}>
       {list.map(each => {
         const {text, icon, count, id} = each
         const bg = activeKey === id ? `SSCV-button bg-${id}` : `SSCV-button`
 
         return (
-          <div className="SSCV-list-con" key={id} dataId={testIds[activeKey]}>
+          <div className="SSCV-list-con" key={id}>
+            {/* dataId={testIds[activeKey]} */}
             <button
               type="button"
               onClick={() => {

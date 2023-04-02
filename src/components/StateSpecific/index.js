@@ -141,7 +141,9 @@ class StateSpecific extends Component {
 
   specificStateDetails = (stateName, stateCode) => {
     const {fetchedData, activeKey} = this.state
+
     const covidDetails = fetchedData[stateCode]
+
     const {meta, total} = covidDetails
 
     const lastUpdate = this.getLastUpdatedDate(meta.last_updated)
@@ -235,7 +237,7 @@ class StateSpecific extends Component {
     )
   }
 
-  render() {
+  renderLineChartPage = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.loading:
@@ -246,6 +248,10 @@ class StateSpecific extends Component {
       default:
         return null
     }
+  }
+
+  render() {
+    return <div testId="lineChartsContainer">{this.renderLineChartPage()}</div>
   }
 }
 

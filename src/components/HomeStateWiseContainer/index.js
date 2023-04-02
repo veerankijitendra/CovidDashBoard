@@ -29,7 +29,6 @@ const HomeStateWiseContainer = props => {
     const {data} = props
     // console.log(data)
     const list = sorting(data)
-    console.log('list', list)
 
     return list.map(each => {
       //   const property = each.state_code
@@ -83,7 +82,7 @@ const HomeStateWiseContainer = props => {
   }
 
   return (
-    <div>
+    <div testId="stateWiseCovidDataTable">
       {/* testId="stateWiseCovidDataTable" */}
       <ul className="states-wise-container">
         <li className="state-wise-heading-container">

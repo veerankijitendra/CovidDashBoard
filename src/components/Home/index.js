@@ -141,11 +141,11 @@ class Home extends Component {
     )
 
     return (
-      <ul className="search-lists-con" testId="renderStateListWhileSearch">
-        {/* testId="renderStateListWhileSearch" */}
+      <ul className="search-lists-con" testId="searchResultsUnorderedList">
+        {/* testId="searchResultsUnorderedList" */}
         {filteredList.map(each => (
-          <Link to={`/state/${each.state_code}`}>
-            <li className="search-list" key={each.state_code}>
+          <Link to={`/state/${each.state_code}`} key={each.state_code}>
+            <li className="search-list">
               <p className="search-state-name">{each.state_name}</p>
               <div className="search-state-code-con">
                 <p className="search-state-code">{each.state_code}</p>

@@ -26,7 +26,7 @@ class About extends Component {
     const options = {method: 'GET'}
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     this.setState({apiStatus: apiStatusConstants.updated, data: [...data.faq]})
   }
 
@@ -40,6 +40,7 @@ class About extends Component {
           COVID-19 vaccines be ready for distribution
         </p>
         <ul className="about-fcq-list-con" testId="faqsUnorderedList">
+          {/* testId="faqsUnorderedList" */}
           {data.map(each => (
             <li key={each.id}>
               <p className="about-list-question">{each.question}</p>
@@ -64,7 +65,7 @@ class About extends Component {
   renderLoadingPhase = () => (
     <ul>
       <Header />
-      <div className="home-loading-container">
+      <div className="home-loading-container" testId="aboutRouteLoader">
         {/* testId="homeRouteLoader" */}
         <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
       </div>

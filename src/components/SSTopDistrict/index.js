@@ -7,6 +7,7 @@ const SSTopDistrict = props => {
       district,
       count,
     }
+
     return object
   }
 
@@ -29,6 +30,9 @@ const SSTopDistrict = props => {
 
     Object.keys(districts).forEach(district => {
       const {total} = districts[district]
+      if (total === undefined) {
+        return
+      }
       const object =
         activeKey === 'active'
           ? getActiveObject(district, total)
@@ -39,15 +43,18 @@ const SSTopDistrict = props => {
     // const sorting = (a, b) => {
     //     console.log(a,b)
     // }
+    // console.log(list, 'district array data')
 
     list.sort((a, b) => b.count - a.count)
+
     return list
   }
 
   const districtWiseCases = casesList()
 
   return (
-    <ul className="sstd-bg-con" testId="topDistrictsUnorderedList">
+    <ul className="sstd-bg-con">
+      {/* testId="topDistrictsUnorderedList" */}
       {districtWiseCases.map(each => (
         <li className="sstd-con" key={each.district}>
           <p className="sstd-count">{each.count}</p>

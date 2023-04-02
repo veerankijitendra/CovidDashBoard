@@ -16,10 +16,7 @@ const HomeTotalCases = props => {
   })
   return (
     <ul className="home-total-data-con">
-      <div
-        className="home-total-data-item"
-        data-testId="countryWideConfirmedCases"
-      >
+      <div className="home-total-data-item" testId="countryWideConfirmedCases">
         <p className="home-data-type red-color">Confirmed</p>
         <img
           src="https://res.cloudinary.com/jithu1997/image/upload/v1671471693/check-mark_1_vckoow.png"
@@ -28,10 +25,7 @@ const HomeTotalCases = props => {
         />
         <p className="home-total-data-count red-color">{totalConfirmedCases}</p>
       </div>
-      <div
-        className="home-total-data-item"
-        data-testId="countryWideActiveCases"
-      >
+      <div className="home-total-data-item" testId="countryWideActiveCases">
         <p className="home-data-type blue-color">Active</p>
         <img
           src="https://res.cloudinary.com/jithu1997/image/upload/v1671471755/protection_1_in4lde.svg"
@@ -42,10 +36,7 @@ const HomeTotalCases = props => {
           {totalConfirmedCases - totalRecoveredCases - totalDeceasedCases}
         </p>
       </div>
-      <div
-        className="home-total-data-item"
-        data-testId="countryWideRecoveredCases"
-      >
+      <div className="home-total-data-item" testId="countryWideRecoveredCases">
         <p className="home-data-type green-color">Recovered</p>
         <img
           src="https://res.cloudinary.com/jithu1997/image/upload/v1671471844/recovered_1_nxollz.svg"
@@ -56,10 +47,7 @@ const HomeTotalCases = props => {
           {totalRecoveredCases}
         </p>
       </div>
-      <div
-        className="home-total-data-item"
-        data-testId="countryWideDeceasedCases"
-      >
+      <div className="home-total-data-item" testId="countryWideDeceasedCases">
         <p className="home-data-type grey-color">Deceased</p>
         <img
           src="https://res.cloudinary.com/jithu1997/image/upload/v1671471815/breathing_1_dsvvpa.svg"

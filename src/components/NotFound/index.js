@@ -13,19 +13,18 @@ const NotFound = () => (
         <div className="not-found-page-details">
           <img
             src="https://res.cloudinary.com/jithu1997/image/upload/v1677509302/Group_7485_viisn0.png"
-            alt="not found"
+            alt="not-found-pic"
             className="not-found-image"
           />
-          <p className="not-found-heading">Page Not Found</p>
+          <h1 className="not-found-heading">PAGE NOT FOUND</h1>
           <p className="not-found-details">
-            we're sorry, the page you requested could not be found{' '}
+            we are sorry, the page you requested could not be found
           </p>
           <p className="not-found-details">Please go back to the homepage</p>
-          <Link to="/">
-            <button type="button" className="not-found-button">
-              Home
-            </button>
-          </Link>
+
+          <button type="button" className="not-found-button">
+            <Link to="/">Home</Link>
+          </button>
         </div>
         <Footer />
       </div>
