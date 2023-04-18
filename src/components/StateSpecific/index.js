@@ -141,15 +141,26 @@ class StateSpecific extends Component {
 
   specificStateDetails = (stateName, stateCode) => {
     const {fetchedData, activeKey} = this.state
-
+    let lastUpdate
+    let covidSelectList
     const covidDetails = fetchedData[stateCode]
 
     const {meta, total} = covidDetails
 
-    const lastUpdate = this.getLastUpdatedDate(meta.last_updated)
+    if (stateName !== '') {
+      lastUpdate = this.getLastUpdatedDate(meta.last_updated)
 
-    const covidSelectList = this.createCovidSelectList(total)
-
+      covidSelectList = this.createCovidSelectList(total)
+    } else {
+      lastUpdate = 0
+      const a = {
+        confirmed: 0,
+        deceased: 0,
+        recovered: 0,
+        tested: 0,
+      }
+      covidSelectList = this.createCovidSelectList(a)
+    }
     return (
       <>
         <>
@@ -163,7 +174,9 @@ class StateSpecific extends Component {
 
             <div className="ss-tested-para-count-con">
               <p className="ss-tested-para">Tested</p>
-              <p className="ss-tested-count">{total.tested}</p>
+              <p className="ss-tested-count">
+                {total.tested === undefined ? 0 : total.tested}
+              </p>
             </div>
           </div>
         </>
@@ -205,12 +218,19 @@ class StateSpecific extends Component {
         const stateCode = this.getStateCode()
         const stateName = this.getStateName(statesList, stateCode)
 
+        /* if (stateName === null) {
+          return <Redirect to="/" />
+        } */
+
         return (
           <>
             <Header />
-            <div className="specific-state-bg">
+            <div className="specific-state-bg" testId="lineChartsContainer">
               <div className="ss-responsive-con">
-                {this.specificStateDetails(stateName, stateCode)}
+                {this.specificStateDetails(
+                  stateName != null ? stateName : '',
+                  stateCode,
+                )}
               </div>
 
               <Footer />
@@ -224,16 +244,15 @@ class StateSpecific extends Component {
   renderLoadingPhase = () => {
     const {menuOpened} = this.state
     return (
-      <ul>
+      <>
         <Header
           menuOpened={menuOpened}
           toggleMenOpened={this.toggleMenOpened}
         />
         <div className="home-loading-container" testId="stateDetailsLoader">
-          {/* testId="stateDetailsLoader" */}
           <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
         </div>
-      </ul>
+      </>
     )
   }
 
@@ -251,7 +270,7 @@ class StateSpecific extends Component {
   }
 
   render() {
-    return <div testId="lineChartsContainer">{this.renderLineChartPage()}</div>
+    return <div>{this.renderLineChartPage()}</div>
   }
 }
 

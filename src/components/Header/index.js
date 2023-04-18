@@ -11,12 +11,12 @@ class Header extends Component {
       <div className="header-menu-icon-link-container">
         <li className=" light-black">
           <Link to="/" className="nav-link-item mobile mr nav-button">
-            Home
+            <button type="button">Home</button>
           </Link>
         </li>
         <li className="nav-link-item light-black">
           <Link to="/about" className="nav-link-item mobile mr nav-button">
-            About
+            <button type="button">About</button>
           </Link>
         </li>
       </div>
@@ -27,10 +27,12 @@ class Header extends Component {
           this.setState(previous => ({menuOpened: !previous.menuOpened}))
         }}
       >
-        <img
-          src="https://res.cloudinary.com/jithu1997/image/upload/v1677240510/CovidDashBoard/Solid_dehh2k.png"
-          alt="close button"
-        />
+        <Link to="/">
+          <img
+            src="https://res.cloudinary.com/jithu1997/image/upload/v1677240510/CovidDashBoard/Solid_dehh2k.png"
+            alt="close button"
+          />
+        </Link>
       </button>
     </div>
   )
@@ -62,13 +64,13 @@ class Header extends Component {
 
               <li className=" light-black">
                 <Link to="/" className="nav-link-item desktop nav-button">
-                  Home
+                  <button type="button">Home</button>
                 </Link>
               </li>
 
               <li className="nav-link-item light-black ">
                 <Link to="/about" className="desktop nav-button">
-                  About
+                  <button type="button">About</button>
                 </Link>
               </li>
             </ul>

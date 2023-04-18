@@ -12,6 +12,7 @@ import './index.css'
 const apiStatusConstants = {
   loading: 'LOADING',
   updated: 'UPDATED',
+  failed: 'FAILED',
 }
 
 class SSGraph extends Component {
@@ -31,51 +32,72 @@ class SSGraph extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
+    // console.log(data)
 
-    const {dates} = data[stateCode]
+    if (data.error_msg === undefined) {
+      const {dates} = data[stateCode]
+      //   console.log(dates, 'jithu')
 
-    const confirmed = []
-    const deceased = []
-    const active = []
-    const recovered = []
-    const tested = []
+      const confirmed = []
+      const deceased = []
+      const active = []
+      const recovered = []
+      const tested = []
 
-    Object.keys(dates).forEach(date => {
-      const {total} = dates[date]
+      Object.keys(dates).forEach(date => {
+        const {total} = dates[date]
 
-      //   const {confirmed, deceased, recovered, tested} = total
+        //   const {confirmed, deceased, recovered, tested} = total
 
-      //   const object = {
-      //     date,
-      //     confirmed,
-      //     deceased,
-      //     recovered,
-      //     active: confirmed - deceased - recovered,
-      //     tested,
-      //   }
-      const object1 = {date, count: total.confirmed}
-      const object2 = {date, count: total.deceased}
-      const object3 = {date, count: total.recovered}
-      const object4 = {
-        date,
-        count: total.confirmed - (total.deceased + total.recovered),
+        //   const object = {
+        //     date,
+        //     confirmed,
+        //     deceased,
+        //     recovered,
+        //     active: confirmed - deceased - recovered,
+        //     tested,
+        //   }
+        const object1 = {date, count: total.confirmed}
+        const object2 = {date, count: total.deceased}
+        const object3 = {date, count: total.recovered}
+        const object4 = {
+          date,
+          count: total.confirmed - (total.deceased + total.recovered),
+        }
+
+        const object5 = {date, count: total.tested}
+
+        confirmed.push(object1)
+        deceased.push(object2)
+        recovered.push(object3)
+        active.push(object4)
+        tested.push(object5)
+      })
+
+      const list = {confirmed, active, recovered, deceased, tested}
+      //   console.log(list, 'finalList')
+
+      this.setState({
+        data: {...list},
+        apiStatus: apiStatusConstants.updated,
+      })
+    } else {
+      const value = [{date: '', count: 0}]
+      const list = {
+        confirmed: value,
+        active: value,
+        recovered: value,
+        deceased: value,
+        tested: value,
       }
-
-      const object5 = {date, count: total.tested}
-
-      confirmed.push(object1)
-      deceased.push(object2)
-      recovered.push(object3)
-      active.push(object4)
-      tested.push(object5)
-    })
-
-    const list = {confirmed, active, recovered, deceased, tested}
-
-    this.setState({
-      data: {...list},
-      apiStatus: apiStatusConstants.updated,
-    })
+      this.setState({
+        data: {...list},
+        apiStatus: apiStatusConstants.updated,
+      })
+      //   this.setState({
+      //     apiStatus: apiStatusConstants.failed,
+      //   })
+    }
   }
 
   renderUpdatedPhase = () => {
@@ -92,7 +114,6 @@ class SSGraph extends Component {
   renderLoadingPhase = () => (
     <ul>
       <div className="ssbg-container" testId="timelinesDataLoader">
-        {/* testId="timelinesDataLoader" */}
         <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
       </div>
     </ul>

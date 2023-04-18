@@ -83,26 +83,25 @@ const HomeStateWiseContainer = props => {
 
   return (
     <div testId="stateWiseCovidDataTable">
-      {/* testId="stateWiseCovidDataTable" */}
       <ul className="states-wise-container">
         <li className="state-wise-heading-container">
           <div className="state-heading-ascending-descending-order-container">
             <p className="state-heading">States/UT</p>
             <button
+              testId="ascendingSort"
               type="button"
               className="state-icon-container"
               onClick={ascendingOfStateList}
             >
-              {/* testId="ascendingSort" */}
               <FcGenericSortingAsc className="state-icon" />
             </button>
 
             <button
+              testId="descendingSort"
               type="button"
               className="state-icon-container"
               onClick={descendingStateList}
             >
-              {/* testId="descendingSort" */}
               <FcGenericSortingDesc className="state-icon" />
             </button>
           </div>

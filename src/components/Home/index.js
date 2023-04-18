@@ -109,7 +109,6 @@ class Home extends Component {
           toggleMenOpened={this.toggleMenOpened}
         />
         <div className="home-loading-container" testId="homeRouteLoader">
-          {/* testId="homeRouteLoader" */}
           <Loader type="ThreeDots" color="#ffffff" height={50} width={50} />
         </div>
       </ul>
@@ -123,14 +122,14 @@ class Home extends Component {
       value,
     )
     return (
-      <>
+      <ul>
         <HomeTotalCases statesList={value} fetchedData={fetchedData} />
         <HomeStateWiseContainer
           statesList={value}
           data={listFormattedDataUsingForInMethod}
         />
         <Footer />
-      </>
+      </ul>
     )
   }
 
@@ -142,7 +141,6 @@ class Home extends Component {
 
     return (
       <ul className="search-lists-con" testId="searchResultsUnorderedList">
-        {/* testId="searchResultsUnorderedList" */}
         {filteredList.map(each => (
           <Link to={`/state/${each.state_code}`} key={each.state_code}>
             <li className="search-list">
